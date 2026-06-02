@@ -626,9 +626,6 @@ Future<Map<String, ProductDetails>> initializeStoreAndPurchases(
     print("Loading Store");
     final bool available = await InAppPurchase.instance.isAvailable();
     if (available) {
-      //Reset any purchases if we can connect to the store, they will be restored if a purchase was made
-      updateSettings("purchaseID", null, updateGlobalState: false);
-
       Stream<List<PurchaseDetails>> purchaseUpdated =
           InAppPurchase.instance.purchaseStream;
       purchaseListener?.cancel();
